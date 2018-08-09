@@ -13,7 +13,7 @@ killTomcat()
 {
     pid=`ps -ef|grep tomcat|grep java|awk '{print $2}'`
     echo "tomcat Id list :$pid"
-    if [ "$pid" = "" || "$pid" = "4037" ]
+    if [ "$pid" = "" ]
     then
       echo "no tomcat pid alive"
     else
@@ -24,7 +24,8 @@ cd $PROJ_PATH/order
 mvn clean install
 
 # 停tomcat
-killTomcat
+# killTomcat
+sh $TOMCAT_APP_PATH/bin/shutdown.sh
 
 # 删除原有工程
 rm -rf $TOMCAT_APP_PATH/webapps/ROOT
